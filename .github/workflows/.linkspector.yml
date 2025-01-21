@@ -1,0 +1,9 @@
+dirs:
+  - ./
+ignorePatterns:
+  - pattern: '^http://localhost.*$'
+aliveStatusCodes:
+  - 200
+  - 429
+useGitIgnore: true
+modifiedFilesOnly: true

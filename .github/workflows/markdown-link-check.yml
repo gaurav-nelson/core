@@ -1,23 +1,22 @@
+---
 name: Check Markdown links
-
 on:
   push:
     paths:
-      - '**.md'
+      - "**.md"
   pull_request:
-    branches: [main]
+    branches:
+      - main
     paths:
-      - '**.md'
-
+      - "**.md"
 jobs:
-  markdown-link-check:
-    runs-on: ubuntu-latest
+  check-links:
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
-    - uses: gaurav-nelson/github-action-markdown-link-check@v1
-      with:
-        use-quiet-mode: 'yes'
-        use-verbose-mode: 'yes'
-        check-modified-files-only: 'yes'
-        config-file: '.github/workflows/markdown-link-check-config.json'
-        base-branch: 'main'
+      - uses: actions/checkout@v4
+      - name: Run linkspector
+        uses: umbrelladocs/action-linkspector@v1
+        with:
+          reporter: github-pr-review
+          fail_on_error: true
+          config_file: .github/workflows/.linkspector.yml
